@@ -1,2 +1,2 @@
-# assembly-stats
+# assembly-summary
 Generate basic stats for an assembly.
