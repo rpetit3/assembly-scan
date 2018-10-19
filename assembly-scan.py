@@ -95,12 +95,12 @@ if __name__ == '__main__':
     from statistics import mean, median
 
     parser = ap.ArgumentParser(
-        prog='assembly-stats.py',
+        prog='assembly-summary.py',
         conflict_handler='resolve',
         description=("Generate statistics for a given assembly.")
     )
     parser.add_argument('assembly', metavar="ASSEMBLY", type=str,
-                        help='FASTA file to read (Default STDIN)')
+                        help='FASTA file to read (gzip or uncompressed)')
     parser.add_argument('--version', action='version',
                         version='%(prog)s {0}'.format(VERSION))
     if len(sys.argv) == 1:
