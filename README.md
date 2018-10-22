@@ -1,3 +1,5 @@
+[![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat-square)](http://bioconda.github.io/recipes/assembly-scan/README.html)
+
 *assembly-scan* reads an assembly in FASTA format and outputs summary statistics in JSON format.
 
 # assembly-scan
