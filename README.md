@@ -4,11 +4,11 @@
 I wanted a quick method to output simple summary statistics of an input assembly in JSON format. There are alternatives including [assemblathon-stats.pl](https://github.com/ucdavis-bioinformatics/assemblathon2-analysis) and [assembly-stats](https://github.com/sanger-pathogens/assembly-stats), but they didn't ouput JSON which I wanted. There are examples below on which stats are output below.
 
 # Installation
-### Bioconda [TODO]
-Working on getting this submitted to Bioconda
-
-### Brew [TODO]
-Same goes for Brew
+### Bioconda
+*assembly-scan* is availble on [BioConda](https://bioconda.github.io/recipes/assembly-scan/README.html).
+```
+conda install assembly-scan
+```
 
 ### From Source
 ```
