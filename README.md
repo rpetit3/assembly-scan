@@ -1,5 +1,6 @@
 [![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat-square)](http://bioconda.github.io/recipes/assembly-scan/README.html) 
 [![Docker Repository on Quay.io](https://quay.io/repository/biocontainers/assembly-scan/status "Docker Repository on Quay.io")](https://quay.io/repository/biocontainers/assembly-scan)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/assembly-scan/badges/downloads.svg)](https://anaconda.org/bioconda/assembly-scan)
 
 
 *assembly-scan* reads an assembly in FASTA format and outputs summary statistics in JSON format.
