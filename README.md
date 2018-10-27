@@ -12,7 +12,7 @@ I wanted a quick method to output simple summary statistics of an input assembly
 ### Bioconda
 *assembly-scan* is availble on [BioConda](https://bioconda.github.io/recipes/assembly-scan/README.html).
 ```
-conda install assembly-scan
+conda install -c bioconda assembly-scan
 ```
 
 ### From Source
