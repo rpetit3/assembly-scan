@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 """Produce basic assembly stats for a given assembly."""
-VERSION = 0.2
+VERSION = "0.3.0"
 
 def open_fasta(filename):
     """Return filehandle depending on file extension."""
@@ -10,21 +10,39 @@ def open_fasta(filename):
     return open(filename, 'r')
 
 
+def default_stats():
+    """Return an default dict for assembly stats."""
+    keys = [
+        "contig_percent_a", "contig_percent_c", "contig_percent_g",
+        "contig_percent_t", "contig_percent_n", "contig_non_acgtn",
+        "contigs_greater_100k", "contigs_greater_10k", "contigs_greater_1k",
+        "contigs_greater_1m", "l50_contig_count", "max_contig_length",
+        "mean_contig_length", "median_contig_length", "min_contig_length",
+        "n50_contig_length", "num_contig_non_acgtn", "percent_contigs_greater_100k",
+        "percent_contigs_greater_10k", "percent_contigs_greater_1k",
+        "percent_contigs_greater_1m", "total_contig", "total_contig_length"
+    ]
+    return dict(zip(keys, [0] * len(keys)))
+
+
 def read_fasta(input_fasta):
     """Return a list of seqeunces from a given FASTA file."""
     try:
         seq = []
         records = []
+        is_fasta = False
         with open_fasta(input_fasta) as fasta_fh:
             for line in fasta_fh:
                 line = line.rstrip()
                 if line.startswith('>'):
+                    is_fasta = True
                     if seq:
                         records.append(''.join(seq))
                         seq = []
-                else:
+                elif is_fasta:
                     seq.append(line)
-            records.append(''.join(seq))
+            if is_fasta:
+                records.append(''.join(seq))
         return records
     except IOError as error:
         raise RuntimeError("Error opening assembly.") from error
@@ -109,47 +127,51 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # Read FASTA
-    fasta = read_fasta(args.assembly)
+    fasta = list(filter(None, read_fasta(args.assembly)))
+    stats = default_stats()
 
-    # Generate Stats
-    lengths = sorted([len(seq) for seq in fasta], key=int, reverse=True)
-    length_totals = contig_lengths(lengths)
-    total_contig = len(fasta)
-    total_bp = sum(lengths)
-    usage = nucleotide_usage(fasta, total_bp)
-    n50 = calculate_n50(lengths, total_bp)
+    if fasta:
+        # Generate Stats
+        lengths = sorted([len(seq) for seq in fasta], key=int, reverse=True)
+        length_totals = contig_lengths(lengths)
+        total_contig = len(fasta)
+        total_bp = sum(lengths)
+        usage = nucleotide_usage(fasta, total_bp)
+        n50 = calculate_n50(lengths, total_bp)
 
-    stats = {
-        "contig_percent_a": print_percent(usage['a']),
-        "contig_percent_c": print_percent(usage['c']),
-        "contig_percent_g": print_percent(usage['g']),
-        "contig_percent_t": print_percent(usage['t']),
-        "contig_percent_n": print_percent(usage['n']),
-        "contig_non_acgtn": print_percent(usage['non_acgtn']),
-        "contigs_greater_100k": length_totals['100k'],
-        "contigs_greater_10k": length_totals['10k'],
-        "contigs_greater_1k": length_totals['1k'],
-        "contigs_greater_1m": length_totals['1m'],
-        "l50_contig_count": n50['l50'],
-        "max_contig_length": max(lengths),
-        "mean_contig_length": int(mean(lengths)),
-        "median_contig_length": int(median(lengths)),
-        "min_contig_length": min(lengths),
-        "n50_contig_length": n50['n50'],
-        "num_contig_non_acgtn": usage['total_non_acgtn'],
-        "percent_contigs_greater_100k": print_percent(
-            length_totals['100k'] / total_contig
-        ),
-        "percent_contigs_greater_10k": print_percent(
-            length_totals['10k'] / total_contig
-        ),
-        "percent_contigs_greater_1k": print_percent(
-            length_totals['1k'] / total_contig
-        ),
-        "percent_contigs_greater_1m": print_percent(
-            length_totals['1m'] / total_contig
-        ),
-        "total_contig": total_contig,
-        "total_contig_length": total_bp
-    }
+        stats = {
+            "contig_percent_a": print_percent(usage['a']),
+            "contig_percent_c": print_percent(usage['c']),
+            "contig_percent_g": print_percent(usage['g']),
+            "contig_percent_t": print_percent(usage['t']),
+            "contig_percent_n": print_percent(usage['n']),
+            "contig_non_acgtn": print_percent(usage['non_acgtn']),
+            "contigs_greater_100k": length_totals['100k'],
+            "contigs_greater_10k": length_totals['10k'],
+            "contigs_greater_1k": length_totals['1k'],
+            "contigs_greater_1m": length_totals['1m'],
+            "l50_contig_count": n50['l50'],
+            "max_contig_length": max(lengths),
+            "mean_contig_length": int(mean(lengths)),
+            "median_contig_length": int(median(lengths)),
+            "min_contig_length": min(lengths),
+            "n50_contig_length": n50['n50'],
+            "num_contig_non_acgtn": usage['total_non_acgtn'],
+            "percent_contigs_greater_100k": print_percent(
+                length_totals['100k'] / total_contig
+            ),
+            "percent_contigs_greater_10k": print_percent(
+                length_totals['10k'] / total_contig
+            ),
+            "percent_contigs_greater_1k": print_percent(
+                length_totals['1k'] / total_contig
+            ),
+            "percent_contigs_greater_1m": print_percent(
+                length_totals['1m'] / total_contig
+            ),
+            "total_contig": total_contig,
+            "total_contig_length": total_bp
+        }
+    else:
+        stats["comment"] = "Invalid format, or empty FASTA. Please verify."
     print(json.dumps(stats, indent=4, sort_keys=True))
