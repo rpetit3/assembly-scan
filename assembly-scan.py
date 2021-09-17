@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 """Produce basic assembly stats for a given assembly."""
-VERSION = "0.4.0"
+VERSION = "0.4.1"
 import sys
 
 def open_fasta(filename):
@@ -121,7 +121,7 @@ if __name__ == '__main__':
     from statistics import mean, median
 
     parser = ap.ArgumentParser(
-        prog='assembly-summary.py',
+        prog='assembly-scan',
         conflict_handler='resolve',
         description=("Generate statistics for a given assembly.")
     )
