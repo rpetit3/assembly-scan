@@ -6,7 +6,7 @@ tasks:
       . /opt/conda/etc/profile.d/conda.sh
       conda activate base
       sleep 5
-      mamba create -n assembly-scan -c conda-forge -c bioconda 'python>=3.7' pre-commit
+      mamba create -y -n assembly-scan -c conda-forge -c bioconda 'python>=3.7' pre-commit
       conda activate assembly-scan
       mkdir -p .vscode
       echo '{"python.pythonPath": "/home/gitpod/.conda/envs/assembly-scan /bin/python"}' > .vscode/settings.json
