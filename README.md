@@ -1,4 +1,4 @@
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/rpetit3/assembly-scan))](https://github.com/bactopia/rpetit3/assembly-scan)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/rpetit3/assembly-scan)](https://github.com/bactopia/rpetit3/assembly-scan)
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/assembly-scan/badges/downloads.svg)](https://anaconda.org/bioconda/assembly-scan)
 [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod)](https://gitpod.io/#https://github.com/rpetit3/assembly-scan)
 
