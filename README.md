@@ -64,7 +64,7 @@ options:
 
 Many FASTA files are available in the _test_ directory. These include an uncompressed
 complete phiX174 genome and a compressed _Staphylococcus aureus_ assembly. This script
-reads the input and outputs summary statistics in JSON format to STDOUT.
+reads the input and outputs summary statistics in tab-delimited format to STDOUT.
 
 ### Uncompressed
 
