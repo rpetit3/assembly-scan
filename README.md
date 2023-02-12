@@ -17,7 +17,7 @@ they didn't output what I wanted. Thus `assembly-scan` was born.
 
 ### Bioconda
 
-*assembly-scan* is available on [BioConda](https://bioconda.github.io/recipes/assembly-scan/README.html).
+*assembly-scan* is available on [Bioconda](https://bioconda.github.io/recipes/assembly-scan/README.html).
 
 ```{bash}
 conda create -n assembly-scan -c conda-forge -c bioconda assembly-scan
