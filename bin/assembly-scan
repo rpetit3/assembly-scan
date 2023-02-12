@@ -22,7 +22,6 @@ def default_stats():
 
     keys = [
         "sample",
-        "fasta",
         "total_contig",
         "total_contig_length",
         "max_contig_length",
@@ -186,7 +185,6 @@ if __name__ == "__main__":
         n50 = calculate_n50(lengths, total_bp)
 
         stats["sample"] = args.prefix if args.prefix else str(Path(args.assembly).name)
-        stats["fasta"] = args.assembly
         stats["contig_percent_a"] = print_percent(usage["a"])
         stats["contig_percent_c"] = print_percent(usage["c"])
         stats["contig_percent_g"] = print_percent(usage["g"])

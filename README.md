@@ -17,7 +17,7 @@ they didn't output what I wanted. Thus `assembly-scan` was born.
 
 ### Bioconda
 
-*assembly-scan* is availble on [BioConda](https://bioconda.github.io/recipes/assembly-scan/README.html).
+*assembly-scan* is available on [BioConda](https://bioconda.github.io/recipes/assembly-scan/README.html).
 
 ```{bash}
 conda create -n assembly-scan -c conda-forge -c bioconda assembly-scan
@@ -109,7 +109,6 @@ assemblies. This example also demonstrates the `--json` option output.
 assembly-scan test/saureus.fasta.gz --json
 {
     "sample": "saureus.fasta.gz",
-    "fasta": "test/saureus.fasta.gz",
     "total_contig": 139,
     "total_contig_length": 2761520,
     "max_contig_length": 269921,
@@ -138,10 +137,9 @@ assembly-scan test/saureus.fasta.gz --json
 
 ## Output Columns
 
-| Column                       | Description |
-|------------------------------|--|
+| Column                       | Description                                           |
+|------------------------------|-------------------------------------------------------|
 | sample                       | Either assembly file basename, or value of `--prefix` |
-| fasta                        | Input assembly processed                              |
 | total_contig                 | Total number of contigs in the assembly               |
 | total_contig_length          | Sum of all contig lengths                             |
 | max_contig_length            | Length of the longest contig                          |
