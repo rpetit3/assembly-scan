@@ -1,12 +1,17 @@
-[![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat-square)](http://bioconda.github.io/recipes/assembly-scan/README.html) 
-[![Docker Repository on Quay.io](https://quay.io/repository/biocontainers/assembly-scan/status "Docker Repository on Quay.io")](https://quay.io/repository/biocontainers/assembly-scan)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/rpetit3/assembly-scan))](https://github.com/bactopia/rpetit3/assembly-scan)
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/assembly-scan/badges/downloads.svg)](https://anaconda.org/bioconda/assembly-scan)
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod)](https://gitpod.io/#https://github.com/rpetit3/assembly-scan)
 
-
-*assembly-scan* reads an assembly in FASTA format and outputs summary statistics in JSON format.
+*assembly-scan* reads an assembly in FASTA format and outputs summary statistics
+in JSON or TSV format.
 
 # assembly-scan
-I wanted a quick method to output simple summary statistics of an input assembly in JSON format. There are alternatives including [assemblathon-stats.pl](https://github.com/ucdavis-bioinformatics/assemblathon2-analysis) and [assembly-stats](https://github.com/sanger-pathogens/assembly-stats), but they didn't ouput JSON which I wanted. There are examples below on which stats are output below.
+I wanted a quick method to output simple summary statistics of an input assembly
+in JSON format. There are alternatives including
+[assemblathon-stats.pl](https://github.com/ucdavis-bioinformatics/assemblathon2-analysis)
+and [assembly-stats](https://github.com/sanger-pathogens/assembly-stats), but
+they didn't ouput JSON which I wanted. There are examples below on which stats
+are output below.
 
 # Installation
 ### Bioconda
@@ -21,12 +26,15 @@ git@github.com:rpetit3/assembly-scan.git
 cd assembly-scan
 python3 assembly-scan.py YOUR_ASSEMBLY.fasta
 ```
-Nothing much to it, just a simple Python3 script to calculate all the stats. You can then move this to your local bin.
+Nothing much to it, just a simple Python3 script to calculate all the stats. You can
+then move this to your local bin.
 
 # Requirements
 * Python >= 3.4 
 
-I've used the [*statistics*](https://docs.python.org/3/library/statistics.html) package from the Python3 Standard Library to limit the number of dependencies. Due to this, this script requires at least Python 3.4 or newer.
+I've used the [*statistics*](https://docs.python.org/3/library/statistics.html) package
+from the Python3 Standard Library to limit the number of dependencies. Due to this, this
+script requires at least Python 3.4 or newer.
 
 # Usage
 *assembly-scan* requires an assembly, gzip compressed or uncompressed, as input. 
@@ -53,7 +61,9 @@ assembly-scan.py 0.2
 ```
 
 ### Example Usage
-Two fasta files have been included in the *example-data* directory. These include an uncompressed complete phiX174 genome and a compressed *Staphylococcus aureus* assembly. This script reads the input and outputs summary statistics in JSON format to STDOUT.
+Two fasta files have been included in the *example-data* directory. These include an
+uncompressed complete phiX174 genome and a compressed *Staphylococcus aureus* assembly.
+This script reads the input and outputs summary statistics in JSON format to STDOUT.
 
 ### Example Execution and Output
 #### Uncompressed
@@ -118,5 +128,11 @@ python3 assembly-scan.py example-data/saureus.fasta.gz
 ```
 
 # Naming
-Originally this was named *assembly-stats*, but after a quick Google search (which I didn't do, [again](https://github.com/rpetit3/fastq-scan#naming), I really should do better!) I found another [*assembly-stats*](https://github.com/sanger-pathogens/assembly-stats) from Sanger Pathogens. So I decided to rename it to *assembly-scan*, similar to my [fastq-scan](https://github.com/rpetit3/fastq-scan) tool, since this process is similar to the [*Scan*](
-https://tvtropes.org/pmwiki/pmwiki.php/Main/EnemyScan) ability found in some video games/movies/tv etc... In otherwords, it 'scans' an assembly and provides the user with otherwise hidden information about the assembly.
+Originally this was named *assembly-stats*, but after a quick Google search (which I
+didn't do, [again](https://github.com/rpetit3/fastq-scan#naming), I really should do
+better!) I found another [*assembly-stats*](https://github.com/sanger-pathogens/assembly-stats)
+from Sanger Pathogens. So I decided to rename it to *assembly-scan*, similar to my
+[fastq-scan](https://github.com/rpetit3/fastq-scan) tool, since this process is similar
+to the [*Scan*](https://tvtropes.org/pmwiki/pmwiki.php/Main/EnemyScan) ability found in
+some video games/movies/tv etc... In otherwords, it 'scans' an assembly and provides the
+user with otherwise hidden information about the assembly.

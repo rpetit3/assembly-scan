@@ -1,0 +1,47 @@
+name: assembly-scan
+on:
+  push:
+    branches: [ main, master, dev ]
+  pull_request:
+    branches: [ main, master, dev ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -el {0}
+    steps:
+      - name: Checkout rpetit3/assembly-scan
+        uses: actions/checkout@v2
+
+      - uses: taiki-e/install-action@just
+
+      - name: Test assembly-scan
+        run: |
+          bin/assembly-scan --version
+          bin/assembly-scan --help
+
+      - name: Test Assembly (uncompressed, json)
+        run: |
+          bin/assembly-scan test/phiX174.fna
+
+      - name: Test Assembly (uncompressed, tsv)
+        run: |
+          bin/assembly-scan test/phiX174.fna --tsv
+
+      - name: Test Assembly (uncompressed, transposed tsv)
+        run: |
+          bin/assembly-scan test/phiX174.fna --transpose
+
+      - name: Test Assembly (compressed, json)
+        run: |
+          bin/assembly-scan test/saureus.fasta.gz
+
+      - name: Test Assembly (compressed, tsv)
+        run: |
+          bin/assembly-scan test/saureus.fasta.gz --tsv
+
+      - name: Test Assembly (compressed, transposed tsv)
+        run: |
+          bin/assembly-scan test/saureus.fasta.gz --transpose
